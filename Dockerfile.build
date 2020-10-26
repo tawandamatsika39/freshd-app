@@ -1,0 +1,21 @@
+FROM maven:3.5.2-jdk-8-alpine
+
+ADD src src
+ADD pom.xml .
+
+RUN mvn package
+
+FROM openjdk:8-jdk-alpine
+ARG BUILD_VERSION
+
+ENV DB_HOST localhost
+ENV DB_PORT 3306
+
+COPY --from=0 /target/dropwizard-webapp-${BUILD_VERSION}.jar dropwizard-webapp.jar
+ADD application.yml application.yml 
+ADD src/main/docker/docker-entrypoint.sh docker-entrypoint.sh
+RUN chmod a+x /docker-entrypoint.sh
+
+EXPOSE 8080 8081
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

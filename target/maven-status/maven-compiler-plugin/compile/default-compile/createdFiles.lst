@@ -1,0 +1,9 @@
+co/za/freshdapp/configuration/AppConfiguration.class
+co/za/freshdapp/enums/ProductAvailability.class
+co/za/freshdapp/dao/ProductDAO.class
+co/za/freshdapp/AppStarter$1.class
+co/za/freshdapp/enums/ProductCategory.class
+co/za/freshdapp/models/Product.class
+co/za/freshdapp/mappers/ProductMapper.class
+co/za/freshdapp/resources/ProductResource.class
+co/za/freshdapp/AppStarter.class
