@@ -42,20 +42,23 @@
       curl http://localhost:8081/healthcheck
 
 - invoke REST(ful) APIs using `curl` commands
-  - create new task
+  - create new product
 
-        curl -X POST http://localhost:8080/tasks \
-           -d '[{"title": "Task #1", "description": "Sample Task"}]' \
-           -H "Content-Type: application/json"
+        curl --location --request POST 'http://localhost:8080/products/' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+	            "id": "",
+	            "name": "Corn",
+	            "category": "Vegetables",
+	            "description": "Fresh Corn from the farm ",
+	            "availability": "IN_STOCK",
+	            "price": 98.50,
+	            "quantity": 23,
+	            "supplierId": "fa5fed1a-8d4c-11ea-bc55-0242ac130003"
+            }'
 
-  - list all tasks
+  - get product by its identifier
 
-        curl http://localhost:8080/tasks
-
-  - get task by its identifier
-
-        curl http://localhost:8080/tasks/1
-
-  - delete task by its identifier
-
-        curl -X DELETE http://localhost:8080/tasks/1
+        curl --location --request GET 'http://localhost:8080/products/36d6957f-c67b-4466-8542-0bb0dee52370' \
+        --header 'Content-Type: application/json' \
+        --data-raw ''
