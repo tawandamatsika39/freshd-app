@@ -22,3 +22,4 @@ atlassian-ide-plugin.xml
 logs
 
 .DS_Store
+.gitignore
