@@ -16,6 +16,8 @@ import org.skife.jdbi.v2.DBI;
 
 public class AppStarter extends Application<AppConfiguration> {
 
+    private static final String
+            SWAGGER_PACKAGE = "co.za.freshdapp.resources";
 
     private final FlywayBundle<AppConfiguration> flywayBundle = new FlywayBundle<AppConfiguration>() {
         @Override
