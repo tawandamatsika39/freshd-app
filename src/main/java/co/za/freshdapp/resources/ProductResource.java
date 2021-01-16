@@ -4,12 +4,7 @@ package co.za.freshdapp.resources;
 import co.za.freshdapp.dao.ProductDAO;
 import co.za.freshdapp.models.Product;
 import java.util.UUID;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import org.skife.jdbi.v2.DBI;
 
@@ -38,5 +33,11 @@ public class ProductResource {
     @Path("{id}")
     public Product findById(@PathParam("id") String id) {
         return productDAO.findById(id);
+    }
+
+    @DELETE
+    @Path("{id}")
+    public boolean deleteById(@PathParam("id") String id) {
+        return true;
     }
 }
