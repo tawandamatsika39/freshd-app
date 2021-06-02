@@ -45,6 +45,12 @@
             <artifactId>dropwizard-flyway</artifactId>
             <version>1.2.0-1</version>
         </dependency>
+
+        <dependency>
+            <groupId>de.ahus1.keycloak.dropwizard</groupId>
+            <artifactId>keycloak-dropwizard</artifactId>
+            <version>1.2.0</version>
+        </dependency>
         
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -128,32 +134,6 @@
                         <tag>latest</tag>
                     </imageTags>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.kongchen</groupId>
-                <artifactId>swagger-maven-plugin</artifactId>
-                <version>3.1.8</version>
-                <configuration>
-                    <apiSources>
-                        <apiSource>
-                            <locations>
-                                <location>
-                                    co.za.freshdapp.resources
-                                </location>
-                            </locations>
-                            <schemes>http*</schemes>
-                            <host>localhost</host>
-                            <basePath>/api</basePath>
-                            <info>
-                                <title></title>
-                                <version>v0.0.1</version>
-                                <description>FreshD App Api</description>
-                            </info>
-                        </apiSource>
-                    </apiSources>
-                </configuration>
-
             </plugin>
         </plugins>
     </build>

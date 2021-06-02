@@ -3,6 +3,8 @@ package co.za.freshdapp;
 import co.za.freshdapp.configuration.AppConfiguration;
 import co.za.freshdapp.resources.ProductResource;
 
+import de.ahus1.keycloak.dropwizard.KeycloakBundle;
+import de.ahus1.keycloak.dropwizard.KeycloakConfiguration;
 import io.dropwizard.Application;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
@@ -16,8 +18,7 @@ import org.skife.jdbi.v2.DBI;
 
 public class AppStarter extends Application<AppConfiguration> {
 
-    private static final String
-            SWAGGER_PACKAGE = "co.za.freshdapp.resources";
+    private static final String SWAGGER_PACKAGE = "co.za.freshdapp.resources";
 
     private final FlywayBundle<AppConfiguration> flywayBundle = new FlywayBundle<AppConfiguration>() {
         @Override
@@ -29,6 +30,15 @@ public class AppStarter extends Application<AppConfiguration> {
         public FlywayFactory getFlywayFactory(AppConfiguration configuration) {
             return configuration.getFlywayFactory();
         }
+    };
+
+    private final KeycloakBundle<AppConfiguration> keycloakBundle = new KeycloakBundle<AppConfiguration>() {
+        @Override
+        protected KeycloakConfiguration getKeycloakConfiguration(AppConfiguration configuration) {
+            return configuration.getKeycloakConfiguration();
+        }
+        /* OPTIONAL: override getUserClass(), createAuthorizer() and createAuthenticator() if you want to use
+         * a class other than de.ahus1.keycloak.dropwizard.User to be injected by @Auth */
     };
     
     public static void main(String[] args) throws Exception {
@@ -49,6 +59,7 @@ public class AppStarter extends Application<AppConfiguration> {
         );
 
         bootstrap.addBundle(flywayBundle);
+        bootstrap.addBundle(keycloakBundle);
     }
 
     @Override

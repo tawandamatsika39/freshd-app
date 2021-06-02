@@ -8,7 +8,8 @@ datasource:
   user: root
   password: p$ssw0rd
   url: jdbc:mysql://${DB_HOST:-localhost}:${DB_PORT:-3306}/my_app_db?useUnicode=true&characterEncoding=UTF-8&useLocalSessionState=true&useSSL=false&allowPublicKeyRetrieval=true
-  
+
+#Server settings
 server:
   applicationConnectors:
     - type: http
@@ -16,3 +17,13 @@ server:
   adminConnectors:
     - type: http
       port: 8081
+
+keycloakConfiguration:
+  realm: freshd-service
+  auth-server-url: http://localhost:8088/auth
+  ssl-required: none
+  register-node-at-startup: true
+  register-node-period: 600
+  resource: freshdapp-backend
+  credentials:
+    secret: 35917385-09aa-41cc-b28b-f02730207a67

@@ -12,6 +12,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import de.ahus1.keycloak.dropwizard.User;
+import io.dropwizard.auth.Auth;
 import org.skife.jdbi.v2.DBI;
 
 @Path("/products")
@@ -26,7 +29,7 @@ public class ProductResource {
     }
 
     @POST
-    public int create(Product product) {
+    public int create(@Auth User auth, Product product) {
         String id = UUID.randomUUID().toString();
         product.setId(id);
         return productDAO.insertProduct(product.getId(), product.getName(), product.getCategory(),
@@ -37,13 +40,13 @@ public class ProductResource {
 
     @GET
     @Path("{id}")
-    public Product findById(@PathParam("id") String id) {
+    public Product findById(@Auth User auth, @PathParam("id") String id) {
         return productDAO.findById(id);
     }
 
     @DELETE
     @Path("{id}")
-    public boolean deleteById(@PathParam("id") String id) {
+    public boolean deleteById(@Auth User auth, @PathParam("id") String id) {
         return true;
     }
 }
